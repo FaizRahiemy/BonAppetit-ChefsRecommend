@@ -5,6 +5,8 @@
  */
 package bonappetit;
 
+import java.io.IOException;
+
 /**
  *
  * @author Novak
@@ -14,8 +16,12 @@ public class Bonappetit {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
+        Game gaminggaming = new Game();
+        
+        gaminggaming.play();
+        // we serve you the best, happy bon appetit
     }
     
 }

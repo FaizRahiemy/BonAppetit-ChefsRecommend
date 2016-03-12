@@ -13,7 +13,8 @@ public abstract class Asset {
     private int type;
     private int level;
     private int exp;
-    private int speciality;
+    private int duration;
+    private int delay; //temporary
     protected int expMax[] = new int[3];
     private int posX;
     private int posY;
@@ -23,7 +24,7 @@ public abstract class Asset {
         this.posY = posY;
     }
     
-    public abstract void move(char dir);
+    public abstract void move(char dir, int row, int column, Asset[][] map);
     public abstract void evolution();
     public abstract void skill();
 
@@ -67,12 +68,23 @@ public abstract class Asset {
         this.posY = posY;
     }
 
-    public int getSpeciality() {
-        return speciality;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setSpeciality(int speciality) {
-        this.speciality = speciality;
+    public void setDuration(int speciality) {
+        this.duration = speciality;
+    }
+
+    
+    //temporary
+    public int getDelay() {
+        return delay;
+    }
+
+    //temporary
+    public void setDelay(int delay) {
+        this.delay = delay;
     }
     
 }

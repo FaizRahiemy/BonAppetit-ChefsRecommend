@@ -12,12 +12,13 @@ package bonappetit;
 public abstract class Ordo extends Asset {
     
     
-    public Ordo(int posY, int posX, int level) {
+    public Ordo(int posY, int posX, int level, int delay) {
         super(posY,posX);
         super.setLevel(level);
         super.expMax[0] = 1;
         super.expMax[1] = 3;
         super.expMax[2] = 5;
+        super.setDelay(delay); //temporary
     }
     
     @Override
@@ -32,9 +33,9 @@ public abstract class Ordo extends Asset {
     @Override
     public void skill() {
         if (super.getLevel()>=2)
-            super.setSpeciality(3);
+            super.setDuration(3);
     }
     
     @Override
-    public abstract void move(char dir);
+    public abstract void move(char dir, int row, int column, Asset[][] map);
 }

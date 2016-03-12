@@ -32,8 +32,8 @@ public class GameMap {
         map[a.getPosY()][a.getPosX()] = a;
     }
     
-    public void removeAsset(int posY, int posX) {
-        map[posY][posX] = null;
+    public void removeAsset(Asset a) {
+        a = null;
     }
     
     public boolean findAsset(Asset a) {
@@ -47,4 +47,27 @@ public class GameMap {
 	}
         return ret;
     }
+    
+    public Asset getAsset(Asset a) {
+        int posY = 0;
+        int posX = 0;
+        for (int i=0;i<map.length;i++) {
+            for (int j=0;j<map[i].length;j++) {
+		if(map[i][j]==a) {
+                    posY=i;
+                    posX=j;
+		}
+            }
+        }
+        if (posY!=0&&posX!=0) {
+            return map[posY][posX];
+        }
+        else
+            return null;
+    }
+    
+    public Asset[][] getMap() {
+        return map;
+    }
+
 }
