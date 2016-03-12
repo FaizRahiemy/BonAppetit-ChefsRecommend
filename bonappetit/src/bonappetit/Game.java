@@ -5,7 +5,6 @@
  */
 package bonappetit;
 
-import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -33,36 +32,32 @@ public class Game {
         Asset temp;
         if (r==0) {
             temp = a;
-            a.move('u',25,80,m.getMap());
+            a.move('u',m.getRow(),m.getColumn(),m.getMap());
             m.addAsset(a);
             m.removeAsset(temp);
         }
         else if (r==1) {
             temp = a;
-            a.move('d',25,80,m.getMap());
+            a.move('d',m.getRow(),m.getColumn(),m.getMap());
             m.addAsset(a);
             m.removeAsset(temp);
         }
         else if (r==2) {
             temp = a;
-            a.move('l',25,80,m.getMap());
+            a.move('l',m.getRow(),m.getColumn(),m.getMap());
             m.addAsset(a);
             m.removeAsset(temp);
         }
         else {
             temp = a;
-            a.move('r',25,80,m.getMap());
+            a.move('r',m.getRow(),m.getColumn(),m.getMap());
             m.addAsset(a);
             m.removeAsset(temp);
         }
     
     }
     
-    public void play() throws IOException {
-        if( System.getProperty( "os.name" ).startsWith( "Window" ) )
-            Runtime.getRuntime().exec("cls");
-        else
-            Runtime.getRuntime().exec("clear");
+    public void play() {
         
         m.addAsset(player);
         m.addAsset(npc1);
@@ -92,7 +87,7 @@ public class Game {
             System.out.println();
         }
         
-        char next = n.next().charAt(0);
+        //char next = n.next().charAt(0);
         
         for (int k=0; k<15; k++) {
             moving(m.getAsset(player));
@@ -101,6 +96,8 @@ public class Game {
             moving(m.getAsset(food1));
             moving(m.getAsset(food2));
             moving(m.getAsset(food3));
+            
+            System.out.println();
             
             for (int i=0;i<m.getMap().length;i++) {
             for (int j=0;j<m.getMap()[i].length;j++) {
@@ -123,7 +120,7 @@ public class Game {
             System.out.println();
             }
             
-            next = n.next().charAt(0);
+            //next = n.next().charAt(0);
 
         }
     }
