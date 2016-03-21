@@ -61,4 +61,9 @@ public class Food extends Asset {
         super.setLevel(0);
         super.setType(0);
     }
+    
+    @Override
+    public String toString() {
+        return "0";
+    }
 }

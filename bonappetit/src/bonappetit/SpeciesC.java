@@ -47,4 +47,13 @@ public class SpeciesC extends Ordo {
         else
             super.setDelay(super.getLevel()+1);
     }
+    
+    public String toString() {
+        if (super.getLevel()==1)
+            return "c";
+        else if (super.getLevel()==2)
+            return "C";
+        else
+            return "C^";
+    }
 }

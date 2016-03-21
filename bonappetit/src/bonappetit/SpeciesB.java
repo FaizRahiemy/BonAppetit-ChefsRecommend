@@ -47,4 +47,14 @@ public class SpeciesB extends Ordo {
         else
             super.setDelay(super.getLevel()+1);
     }
+    
+    @Override
+    public String toString() {
+        if (super.getLevel()==1)
+            return "b";
+        else if (super.getLevel()==2)
+            return "B";
+        else
+            return "B'";
+    }
 }
