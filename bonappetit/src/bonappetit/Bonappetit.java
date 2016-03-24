@@ -5,6 +5,7 @@
  */
 package bonappetit;
 
+
 /**
  *
  * @author Novak
@@ -16,6 +17,10 @@ public class Bonappetit {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Game game = new Game();
+        
+        game.play();
+        // we serve you the best, happy bon appetit
     }
     
 }
