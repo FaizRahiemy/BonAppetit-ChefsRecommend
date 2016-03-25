@@ -35,26 +35,26 @@ public class Game {
         if (r==0) {
             a.move('u',m.getRow(),m.getColumn(),m.getMap());
             m.addAsset(a);
-            //if (a==m.getMap()[a.getPosY()+1][a.getPosX()])
-            //    m.removeAsset(m.getMap()[a.getPosY()+1][a.getPosX()]);
+            if (a==m.getMap()[a.getPosY()+1][a.getPosX()])
+                m.removeAsset(a.getPosY()+1,a.getPosX());
         }
         else if (r==1) {
             a.move('d',m.getRow(),m.getColumn(),m.getMap());
             m.addAsset(a);
-            //if (a==m.getMap()[a.getPosY()-1][a.getPosX()])
-            //    m.removeAsset(m.getMap()[a.getPosY()-1][a.getPosX()]);
+            if (a==m.getMap()[a.getPosY()-1][a.getPosX()])
+                m.removeAsset(a.getPosY()-1,a.getPosX());
         }
         else if (r==2) {
             a.move('l',m.getRow(),m.getColumn(),m.getMap());
             m.addAsset(a);
-            //if (a==m.getMap()[a.getPosY()][a.getPosX()+1])
-            //    m.removeAsset(m.getMap()[a.getPosY()][a.getPosX()+1]);
+            if (a==m.getMap()[a.getPosY()][a.getPosX()+1])
+                m.removeAsset(a.getPosY(),a.getPosX()+1);
         }
         else {
             a.move('r',m.getRow(),m.getColumn(),m.getMap());
             m.addAsset(a);
-            //if (a==m.getMap()[a.getPosY()][a.getPosX()-1])
-            //    m.removeAsset(m.getMap()[a.getPosY()][a.getPosX()-1]);
+            if (a==m.getMap()[a.getPosY()][a.getPosX()-1])
+                m.removeAsset(a.getPosY(),a.getPosX()-1);
         }
     }
     
@@ -63,25 +63,25 @@ public class Game {
             a.move('u',m.getRow(),m.getColumn(),m.getMap());
             m.addAsset(a);
             if (a==m.getMap()[a.getPosY()+1][a.getPosX()])
-                m.removeAsset(m.getMap()[a.getPosY()+1][a.getPosX()]);
+                m.removeAsset(a.getPosY()+1,a.getPosX());
         }
         else if (in=='s'||in=='S') {
             a.move('d',m.getRow(),m.getColumn(),m.getMap());
             m.addAsset(a);
             if (a==m.getMap()[a.getPosY()-1][a.getPosX()])
-                m.removeAsset(m.getMap()[a.getPosY()-1][a.getPosX()]);
+                m.removeAsset(a.getPosY()-1,a.getPosX());
         }
         else if (in=='a'||in=='A') {
             a.move('l',m.getRow(),m.getColumn(),m.getMap());
             m.addAsset(a);
             if (a==m.getMap()[a.getPosY()][a.getPosX()+1])
-                m.removeAsset(m.getMap()[a.getPosY()][a.getPosX()+1]);
+                m.removeAsset(a.getPosY(),a.getPosX()+1);
         }
         else {
             a.move('r',m.getRow(),m.getColumn(),m.getMap());
             m.addAsset(a);
             if (a==m.getMap()[a.getPosY()][a.getPosX()-1])
-                m.removeAsset(m.getMap()[a.getPosY()][a.getPosX()-1]);
+                m.removeAsset(a.getPosY(),a.getPosX()-1);
         }
     }
     
@@ -152,7 +152,7 @@ public class Game {
         System.out.print("+");
         char next = n.next().charAt(0);
         
-        for (int k=0; k<15; k++) {
+        do {
             moving(asset[0],next);
             for (int o=1; o<asset.length; o++) {
                 moving(asset[o]);
@@ -192,6 +192,6 @@ public class Game {
             
             next = n.next().charAt(0);
 
-        }
+        } while(next!='0');
     }
 }

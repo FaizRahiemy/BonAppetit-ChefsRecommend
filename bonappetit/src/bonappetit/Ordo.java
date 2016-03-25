@@ -15,7 +15,7 @@ public abstract class Ordo extends Asset {
     public Ordo(int posY, int posX, int level, int delay) {
         super(posY,posX);
         super.setLevel(level);
-        super.expMax[0] = 1;
+        super.expMax[0] = 2;
         super.expMax[1] = 3;
         super.expMax[2] = 5;
         super.setDelay(delay); //temporary
