@@ -49,12 +49,16 @@ public class Food extends Asset implements java.io.Serializable {
 
     @Override
     public void evolution() {
-
+        super.setType(0);
+        super.setExp(0);
+        super.setLevel(0);
     }
 
     @Override
     public void skill() {
-
+        super.setType(0);
+        super.setExp(0);
+        super.setLevel(0);
     }
 
     @Override
