@@ -5,6 +5,8 @@
  */
 package bonappetit;
 
+import java.io.IOException;
+
 
 /**
  *
@@ -15,11 +17,11 @@ public class Bonappetit {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         // TODO code application logic here
         Game game = new Game();
         
-        game.play();
+        game.loadPlay();
         // we serve you the best, happy bon appetit
     }
     

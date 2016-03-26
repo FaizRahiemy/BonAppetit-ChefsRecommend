@@ -9,11 +9,11 @@ package bonappetit;
  *
  * @author Kel. 8
  */
-public abstract class Asset {
+public abstract class Asset implements java.io.Serializable {
     private int type;
     private int level;
     private int exp;
-    private int duration;
+    private int duration = -1;
     private int delay; //temporary
     protected int expMax[] = new int[3];
     private int posX;
