@@ -48,16 +48,13 @@ public class Game {
             dir = 'u';
             a.move(dir, m.getRow(), m.getColumn(), m.getMap());
             if (delay) {
-                if (dir=='u') {
+                if (dir == 'u') {
                     m.removeAsset(a.getPosY() + 1, a.getPosX());
-                }
-                else if (dir=='d') {
+                } else if (dir == 'd') {
                     m.removeAsset(a.getPosY() - 1, a.getPosX());
-                }
-                else if (dir=='l') {
+                } else if (dir == 'l') {
                     m.removeAsset(a.getPosY(), a.getPosX() + 1);
-                }
-                else if (dir=='r') {
+                } else if (dir == 'r') {
                     m.removeAsset(a.getPosY(), a.getPosX() - 1);
                 }
             }
@@ -71,16 +68,13 @@ public class Game {
             a.move(dir, m.getRow(), m.getColumn(), m.getMap());
             m.addAsset(a);
             if (delay) {
-                if (dir=='u') {
+                if (dir == 'u') {
                     m.removeAsset(a.getPosY() + 1, a.getPosX());
-                }
-                else if (dir=='d') {
+                } else if (dir == 'd') {
                     m.removeAsset(a.getPosY() - 1, a.getPosX());
-                }
-                else if (dir=='l') {
+                } else if (dir == 'l') {
                     m.removeAsset(a.getPosY(), a.getPosX() + 1);
-                }
-                else if (dir=='r') {
+                } else if (dir == 'r') {
                     m.removeAsset(a.getPosY(), a.getPosX() - 1);
                 }
             }
@@ -94,16 +88,13 @@ public class Game {
             a.move(dir, m.getRow(), m.getColumn(), m.getMap());
             m.addAsset(a);
             if (delay) {
-                if (dir=='u') {
+                if (dir == 'u') {
                     m.removeAsset(a.getPosY() + 1, a.getPosX());
-                }
-                else if (dir=='d') {
+                } else if (dir == 'd') {
                     m.removeAsset(a.getPosY() - 1, a.getPosX());
-                }
-                else if (dir=='l') {
+                } else if (dir == 'l') {
                     m.removeAsset(a.getPosY(), a.getPosX() + 1);
-                }
-                else if (dir=='r') {
+                } else if (dir == 'r') {
                     m.removeAsset(a.getPosY(), a.getPosX() - 1);
                 }
             }
@@ -117,16 +108,13 @@ public class Game {
             a.move(dir, m.getRow(), m.getColumn(), m.getMap());
             m.addAsset(a);
             if (delay) {
-                if (dir=='u') {
+                if (dir == 'u') {
                     m.removeAsset(a.getPosY() + 1, a.getPosX());
-                }
-                else if (dir=='d') {
+                } else if (dir == 'd') {
                     m.removeAsset(a.getPosY() - 1, a.getPosX());
-                }
-                else if (dir=='l') {
+                } else if (dir == 'l') {
                     m.removeAsset(a.getPosY(), a.getPosX() + 1);
-                }
-                else if (dir=='r') {
+                } else if (dir == 'r') {
                     m.removeAsset(a.getPosY(), a.getPosX() - 1);
                 }
             }
@@ -187,8 +175,11 @@ public class Game {
             delay = false;
         }
     }
-    
+
     private void play() throws FileNotFoundException, IOException {
+        for (int o = 0; o < asset.length; o++) {
+            m.addAsset(asset[o]);
+        }
         System.out.print("+");
         for (int l = 0; l < m.getMap()[0].length; l++) {
             System.out.print("-");
@@ -218,17 +209,18 @@ public class Game {
         }
         System.out.print("+");
         char next = n.next().charAt(0);
-        do {
-            if (next=='e') 
+        while (next != '0') {
+            if (next == 'e') {
                 asset[0].skill();
-            else if (next=='q')
+            } else if (next == 'q') {
                 try (FileOutputStream fout = new FileOutputStream("save.txt")) {
                     ObjectOutputStream oout = new ObjectOutputStream(fout);
-                    oout.writeObject(asset[0]);
+                    oout.writeObject(asset);
                     oout.flush();
                 }
-            else
+            } else {
                 moving(asset[0], next);
+            }
             for (int o = 1; o < asset.length; o++) {
                 moving(asset[o]);
             }
@@ -262,15 +254,16 @@ public class Game {
                 System.out.print("-");
             }
             System.out.print("+");
-            
-            if (next!='q')
-                next = n.next().charAt(0);
-            else
-                next = '0';
 
-        } while (next != '0');
+            if (next != 'q') {
+                next = n.next().charAt(0);
+            } else {
+                next = '0';
+            }
+
+        }
     }
-    
+
     public void newPlay() throws IOException {
 
         System.out.print("Input number = ");
@@ -283,8 +276,17 @@ public class Game {
             asset[0] = new SpeciesA((m.getRow() / 2), (m.getColumn() / 2), 3, 2);
         } else if (c == 'b' || c == 'B') {
             asset[0] = new SpeciesB((m.getRow() / 2), (m.getColumn() / 2), 3, 2);
-        } else {
+        } else if (c == 'c' || c == 'C') {
             asset[0] = new SpeciesC((m.getRow() / 2), (m.getColumn() / 2), 3, 2);
+        } else {
+            int random = rand.nextInt(3);
+            if (random == 0) {
+                asset[0] = new SpeciesA((m.getRow() / 2), (m.getColumn() / 2), 3, 2);
+            } else if (random == 1) {
+                asset[0] = new SpeciesB((m.getRow() / 2), (m.getColumn() / 2), 3, 2);
+            } else {
+                asset[0] = new SpeciesC((m.getRow() / 2), (m.getColumn() / 2), 3, 2);
+            }
         }
 
         for (int o = 1; o < asset.length; o++) {
@@ -299,23 +301,24 @@ public class Game {
                 asset[o] = new Food(rand.nextInt(m.getRow()), rand.nextInt(m.getColumn()), rand.nextInt(2));
             }
         }
-
-        for (int o = 0; o < asset.length; o++) {
-            m.addAsset(asset[o]);
-        }
-
         play();
-        
+
     }
-    
+
     public void loadPlay() throws IOException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("save.txt"))) {
-            asset[0] = (Asset) ois.readObject();
+            Object ob = ois.readObject();
+            asset = (Asset[]) ob;
+
+            if (asset == null) {
+                System.out.println("No save file");
+            } else {
+                play();
+            }
         } catch (FileNotFoundException e) {
             System.out.println("File not Found");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger("No class found");
         }
-        play();
     }
 }

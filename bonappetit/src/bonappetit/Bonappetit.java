@@ -19,9 +19,9 @@ public class Bonappetit {
      */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         // TODO code application logic here
-        Game game = new Game();
+        Application app = new Application();
         
-        game.loadPlay();
+        app.menu();
         // we serve you the best, happy bon appetit
     }
     
