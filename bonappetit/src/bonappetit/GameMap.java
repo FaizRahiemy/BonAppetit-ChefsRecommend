@@ -30,24 +30,25 @@ public class GameMap {
     }
 
     public void addAsset(Asset a) {
-        map[a.getPosY()][a.getPosX()] = a;
+        if (a!=null)
+            map[a.getPosY()][a.getPosX()] = a;
     }
 
-    public void removeAsset(int posY, int posX) {
-        map[posY][posX] = null;
-    }
-
-    public boolean findAsset(Asset a) {
-        boolean ret = false;
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[i].length; j++) {
-                if (map[i][j] == a) {
-                    ret = true;
-                }
-            }
-        }
-        return ret;
-    }
+//    public void removeAsset(int posY, int posX) {
+//        map[posY][posX] = null;
+//    }
+//
+//    public boolean findAsset(Asset a) {
+//        boolean ret = false;
+//        for (int i = 0; i < map.length; i++) {
+//            for (int j = 0; j < map[i].length; j++) {
+//                if (map[i][j] == a) {
+//                    ret = true;
+//                }
+//            }
+//        }
+//        return ret;
+//    }
 
     public Asset getAsset(Asset a) {
         int posY = 0;
@@ -98,6 +99,33 @@ public class GameMap {
         }
     }
 
+    public void display2() {
+            
+            System.out.print("+");
+            for (int l = 0; l < map[0].length; l++) {
+                System.out.print("-");
+            }
+            System.out.println("+");
+            for (int i = 0; i < map.length; i++) {
+                System.out.print("|");
+                for (int j = 0; j < map[i].length; j++) {
+                    if (map[i][j] == null) {
+                        System.out.print(' ');
+                    } else {
+                        System.out.print(map[i][j]);
+                    }
+                }
+                System.out.print("|");
+                System.out.println();
+            }
+            System.out.print("+");
+            for (int l = 0; l < map[0].length; l++) {
+                System.out.print("-");
+            }
+            System.out.print("+");
+            System.out.println();
+    }
+    
     public void nullMap() {
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {

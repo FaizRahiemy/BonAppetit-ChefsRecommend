@@ -32,7 +32,10 @@ public abstract class Ordo extends Asset implements java.io.Serializable{
 
     @Override
     public void skill() {
-        if (super.getLevel() >= 2 && super.getDuration()== -1) {
+        if ((super.getType()== 3 || super.getType()== 2)&& super.getDuration()== -1) {
+            super.setDuration(3);
+        }
+        else if (super.getLevel() >= 2 && super.getDuration()== -1) {
             super.setDuration(3);
         }
     }

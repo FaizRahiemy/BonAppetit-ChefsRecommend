@@ -49,12 +49,14 @@ public class SpeciesA extends Ordo implements java.io.Serializable {
                     super.setPosX(super.getPosX() - 1);
                 }
             }
-            if (super.expMax[super.getLevel()-1]==super.getExp()) {
-                super.setExp(0);
-                super.setLevel(super.getLevel()+1);
+            if (super.getLevel()<3) {
+                if (super.expMax[super.getLevel()-1]==super.getExp()) {
+                    super.setExp(0);
+                    super.setLevel(super.getLevel()+1);
+                }
             }
             if (super.getDuration()>0) {
-                super.setDelay(super.getDelay() + 3);
+                super.setDelay(super.getDelay() + 6);
                 super.setDuration(super.getDuration()-1);
             }
             else
