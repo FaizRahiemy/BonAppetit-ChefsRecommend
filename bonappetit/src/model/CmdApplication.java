@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bonappetit;
+package model;
 
 import IOPackage.IOFile;
 import java.io.*;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author Novak
  */
-public class Application {
+public class CmdApplication {
 
     Game game = new Game();
     IOFile file = new IOFile();
@@ -58,6 +58,49 @@ public class Application {
         } catch (Throwable f) {
             f.printStackTrace();
         }
+    }
+    
+    public void option() {
+        char input;
+        System.out.println("up \t :"+game.getUp());
+        System.out.println("down \t :"+game.getDown());
+        System.out.println("left \t :"+game.getLeft());
+        System.out.println("right \t :"+game.getRight());
+        System.out.println("skill \t :"+game.getSkill());
+        System.out.println("save \t :"+game.getSave());
+        System.out.println("quit \t :"+game.getQuit());
+        System.out.println("Control Option");
+        System.out.print("up \t :");
+        input = n.next().charAt(0);
+        game.setUp(input);
+        System.out.print("down \t :");
+        input = n.next().charAt(0);
+        game.setDown(input);
+        System.out.print("left \t :");
+        input = n.next().charAt(0);
+        game.setLeft(input);
+        System.out.print("right \t :");
+        input = n.next().charAt(0);
+        game.setRight(input);
+        System.out.print("skill \t :");
+        input = n.next().charAt(0);
+        game.setSkill(input);
+        System.out.print("save \t :");
+        input = n.next().charAt(0);
+        game.setSave(input);
+        System.out.print("quit \t :");
+        input = n.next().charAt(0);
+        game.setQuit(input);
+        System.out.println("Save changes");
+        System.out.println("up \t :"+game.getUp());
+        System.out.println("down \t :"+game.getDown());
+        System.out.println("left \t :"+game.getLeft());
+        System.out.println("right \t :"+game.getRight());
+        System.out.println("skill \t :"+game.getSkill());
+        System.out.println("save \t :"+game.getSave());
+        System.out.println("quit \t :"+game.getQuit());
+        System.out.println("press anykeys to continue");
+        char next = n.next().charAt(0);
     }
 
 //    private void play() throws FileNotFoundException, IOException {
@@ -106,11 +149,11 @@ public class Application {
             game.getM().addAsset(game.getAsset()[o]);
         }
         thread.start();
-        while (dir != '0' && game.getAsset()[0] != null) {
+        while (dir != game.getQuit() && game.getAsset()[0] != null) {
             dir = n.next().charAt(0);
-            if (dir == 'e') {
+            if (dir == game.getSkill()) {
                 game.getAsset()[0].skill();
-            } else if (dir == 'q') {
+            } else if (dir == game.getSave()) {
 //                try (FileOutputStream fout = new FileOutputStream("save.txt")) {
 //                    ObjectOutputStream oout = new ObjectOutputStream(fout);
 //                    oout.writeObject(game.getAsset());
@@ -133,10 +176,7 @@ public class Application {
                     if (game.getAsset()[p].getPosY() == game.getAsset()[0].getPosY() && game.getAsset()[p].getPosX() == game.getAsset()[0].getPosX()) {
                         if (game.getAsset()[p].getLevel() <= game.getAsset()[0].getLevel()) {
                             game.removeAsset(p);
-                        } //else {
-//                            game.removeAsset(0);
-//                            dir = '0';
-//                        }
+                        }
                     }
                 }
             }
@@ -196,11 +236,11 @@ public class Application {
             for (int o = 1; o < game.getAsset().length; o++) {
                 int r = rand.nextInt(6);
                 if (r == 0) {
-                    game.setAsset2(o, new SpeciesA(rand.nextInt(game.getM().getRow()), rand.nextInt(game.getM().getColumn()), 2, rand.nextInt(3)));
+                    game.setAsset2(o, new SpeciesA(rand.nextInt(game.getM().getRow()), rand.nextInt(game.getM().getColumn()), 2, rand.nextInt(6)));
                 } else if (r == 1) {
-                    game.setAsset2(o, new SpeciesB(rand.nextInt(game.getM().getRow()), rand.nextInt(game.getM().getColumn()), 2, rand.nextInt(3)));
+                    game.setAsset2(o, new SpeciesB(rand.nextInt(game.getM().getRow()), rand.nextInt(game.getM().getColumn()), 2, rand.nextInt(6)));
                 } else if (r == 2) {
-                    game.setAsset2(o, new SpeciesC(rand.nextInt(game.getM().getRow()), rand.nextInt(game.getM().getColumn()), 2, rand.nextInt(3)));
+                    game.setAsset2(o, new SpeciesC(rand.nextInt(game.getM().getRow()), rand.nextInt(game.getM().getColumn()), 2, rand.nextInt(6)));
                 } else {
                     game.setAsset2(o, new Food(rand.nextInt(game.getM().getRow()), rand.nextInt(game.getM().getColumn()), rand.nextInt(2)));
                 }
@@ -209,11 +249,11 @@ public class Application {
             for (int o = 1; o < game.getAsset().length; o++) {
                 int r = rand.nextInt(7);
                 if (r == 0) {
-                    game.setAsset2(o, new SpeciesA(rand.nextInt(game.getM().getRow()), rand.nextInt(game.getM().getColumn()), 1, rand.nextInt(3)));
+                    game.setAsset2(o, new SpeciesA(rand.nextInt(game.getM().getRow()), rand.nextInt(game.getM().getColumn()), 1, rand.nextInt(5)));
                 } else if (r == 1) {
-                    game.setAsset2(o, new SpeciesB(rand.nextInt(game.getM().getRow()), rand.nextInt(game.getM().getColumn()), 1, rand.nextInt(3)));
+                    game.setAsset2(o, new SpeciesB(rand.nextInt(game.getM().getRow()), rand.nextInt(game.getM().getColumn()), 1, rand.nextInt(5)));
                 } else if (r == 2) {
-                    game.setAsset2(o, new SpeciesC(rand.nextInt(game.getM().getRow()), rand.nextInt(game.getM().getColumn()), 1, rand.nextInt(3)));
+                    game.setAsset2(o, new SpeciesC(rand.nextInt(game.getM().getRow()), rand.nextInt(game.getM().getColumn()), 1, rand.nextInt(5)));
                 } else {
                     game.setAsset2(o, new Food(rand.nextInt(game.getM().getRow()), rand.nextInt(game.getM().getColumn()), rand.nextInt(2)));
                 }
@@ -272,7 +312,8 @@ public class Application {
             System.out.println("Bon Appetit");
             System.out.println("1. New Game");
             System.out.println("2. Load Game");
-            System.out.println("3. Credits");
+            System.out.println("3. Option");
+            System.out.println("4. Credits");
             System.out.println("0. Close");
             System.out.print("Input : ");
             try {
@@ -282,12 +323,14 @@ public class Application {
                 } else if (pil == 2) {
                     loadPlay();
                 } else if (pil == 3) {
+                    option();
+                } else if (pil == 4) {
                     credits();
                 }
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Wrong input");
                 a = new Scanner(System.in);
-                pil = 4;
+                pil = -1;
             }// catch (Exception es) {
 //                System.out.println("Error");
 //                pil = 4;

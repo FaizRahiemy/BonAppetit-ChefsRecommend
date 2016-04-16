@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bonappetit;
+package model;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -20,10 +20,22 @@ public class Game extends Thread {
     boolean run = true;
     boolean win = false;
 
-    GameMap m = new GameMap(12, 60);
+    char up = 'w';
+    char down = 's';
+    char left = 'a';
+    char right = 'd';
+    char skill = 'e';
+    char save = 'q';
+    char quit = '0';
+    
+    GameMap m;
     Asset asset[];
     int dead = 0;
 
+    public Game() {
+        m = new GameMap(12, 60);
+    }
+    
     public void moving(Asset a) {
         int r = rand.nextInt(4);
         if (r == 0) {
@@ -38,13 +50,13 @@ public class Game extends Thread {
     }
 
     public void moving(Asset a, char in) {
-        if (in == 'w' || in == 'W') {
+        if (in == up) {
             a.move('u', m.getRow(), m.getColumn(), m.getMap());
-        } else if (in == 's' || in == 'S') {
+        } else if (in == down) {
             a.move('d', m.getRow(), m.getColumn(), m.getMap());
-        } else if (in == 'a' || in == 'A') {
+        } else if (in == left) {
             a.move('l', m.getRow(), m.getColumn(), m.getMap());
-        } else if (in == 'd' || in == 'D') {
+        } else if (in == right) {
             a.move('r', m.getRow(), m.getColumn(), m.getMap());
         }
     }
@@ -97,6 +109,62 @@ public class Game extends Thread {
         asset[i] = a;
     }
 
+    public char getUp() {
+        return up;
+    }
+
+    public void setUp(char up) {
+        this.up = up;
+    }
+
+    public char getDown() {
+        return down;
+    }
+
+    public void setDown(char down) {
+        this.down = down;
+    }
+
+    public char getLeft() {
+        return left;
+    }
+
+    public void setLeft(char left) {
+        this.left = left;
+    }
+
+    public char getRight() {
+        return right;
+    }
+
+    public void setRight(char right) {
+        this.right = right;
+    }
+
+    public char getSkill() {
+        return skill;
+    }
+
+    public void setSkill(char skill) {
+        this.skill = skill;
+    }
+
+    public char getSave() {
+        return save;
+    }
+
+    public void setSave(char save) {
+        this.save = save;
+    }
+
+    public char getQuit() {
+        return quit;
+    }
+
+    public void setQuit(char quit) {
+        this.quit = quit;
+    }
+    
     @Override
     public void run() {
         while (isRun()) {
