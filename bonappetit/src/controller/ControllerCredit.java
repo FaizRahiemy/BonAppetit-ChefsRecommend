@@ -38,7 +38,7 @@ public class ControllerCredit implements ActionListener, Runnable {
             Thread.sleep(1000);
             c.getTextCredit().append(" Chef de Parte   \t \t : Raja Ryan Pradana \n");
             Thread.sleep(1000);
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 3; i++) {
                 c.getTextCredit().append(" Lots of text \n");
                 Thread.sleep(100);
             }
