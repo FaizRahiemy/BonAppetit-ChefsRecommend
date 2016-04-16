@@ -37,22 +37,22 @@ public class ControllerCredit implements ActionListener, Runnable {
             c.getTextCredit().append(" Sous Chef       \t \t : Mohammad Zakie Faiz Rahiemy \n");
             Thread.sleep(1000);
             c.getTextCredit().append(" Chef de Parte   \t \t : Raja Ryan Pradana \n");
-            //Thread.sleep(1000);
-//            for (int i = 0; i < 25; i++) {
-//                c.getTextCredit().append(" Lots of text \n");
-//                Thread.sleep(100);
-//            }
-//            for (int i = 0; i < 20; i++) {
-//                c.getTextCredit().append(" Lots of things \n");
-//               Thread.sleep(100);
-//            }
-//            c.getTextCredit().append(" tl;dr lol \n");
-            //Thread.sleep(100);
+            Thread.sleep(1000);
+            for (int i = 0; i < 5; i++) {
+                c.getTextCredit().append(" Lots of text \n");
+                Thread.sleep(100);
+            }
+            for (int i = 0; i < 2; i++) {
+                c.getTextCredit().append(" Lots of things \n");
+               Thread.sleep(100);
+            }
+            c.getTextCredit().append(" tl;dr lol \n");
+            Thread.sleep(100);
             c.getTextCredit().append(" Special Thanks \n");
-            //Thread.sleep(1000);
+            Thread.sleep(1000);
             c.getTextCredit().append(" Lots of asprak \n");
-            //Thread.sleep(1000);
-            c.getTextCredit().append(" and especially you \n");
+            Thread.sleep(1000);
+            c.getTextCredit().append(" and especially YOU \n");
         } catch (Throwable f) {
             f.printStackTrace();
         }
