@@ -39,42 +39,60 @@ public class Credit extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bground21 = new view.bground3();
+        btnMenu = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         textCredit = new javax.swing.JTextArea();
-        btnMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
         setLocation(new java.awt.Point(483, 234));
 
+        btnMenu.setBackground(new java.awt.Color(0, 0, 0));
+        btnMenu.setFont(new java.awt.Font("Determination Mono", 0, 11)); // NOI18N
+        btnMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnMenu.setText("BACK");
+
         textCredit.setEditable(false);
+        textCredit.setBackground(new java.awt.Color(0, 0, 0));
         textCredit.setColumns(20);
+        textCredit.setForeground(new java.awt.Color(255, 255, 255));
         textCredit.setRows(5);
         textCredit.setBorder(null);
         jScrollPane1.setViewportView(textCredit);
 
-        btnMenu.setText("Back");
+        javax.swing.GroupLayout bground21Layout = new javax.swing.GroupLayout(bground21);
+        bground21.setLayout(bground21Layout);
+        bground21Layout.setHorizontalGroup(
+            bground21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bground21Layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addComponent(btnMenu)
+                .addContainerGap(186, Short.MAX_VALUE))
+            .addGroup(bground21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+        );
+        bground21Layout.setVerticalGroup(
+            bground21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bground21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnMenu)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(btnMenu)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(bground21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnMenu)
-                .addContainerGap(27, Short.MAX_VALUE))
+            .addComponent(bground21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -116,6 +134,7 @@ public class Credit extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private view.bground3 bground21;
     private javax.swing.JButton btnMenu;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea textCredit;

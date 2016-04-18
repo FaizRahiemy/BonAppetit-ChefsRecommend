@@ -5,43 +5,19 @@
  */
 package view;
 
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.Label;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 
 /**
  *
  * @author Novak
  */
 public class MainMenu extends javax.swing.JFrame {
-
-    public void setFont() {
-        try {
-            InputStream is = MainMenu.class.getResourceAsStream("/font/PixelicWar.ttf");
-            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-            font = font.deriveFont(Font.PLAIN, 20);
-            JLabel l = new JLabel("hahahahhahahah");
-            l.setFont(font);
-        } catch (FontFormatException ex) {
-            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     /**
      * Creates new form main
      */
     public MainMenu() {
 
         initComponents();
-        setFont();
 //        title.setFont(font);
 
     }
@@ -55,54 +31,68 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        label1 = new java.awt.Label();
+        bground1 = new view.bground();
         btnNew = new javax.swing.JButton();
         btnLoad = new javax.swing.JButton();
         btnCredit = new javax.swing.JButton();
-        title = new java.awt.Label();
+
+        label1.setText("label1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setForeground(java.awt.Color.black);
         setLocation(new java.awt.Point(483, 234));
 
-        btnNew.setText("New Game");
+        btnNew.setBackground(new java.awt.Color(0, 0, 0));
+        btnNew.setFont(new java.awt.Font("Determination Mono", 0, 11)); // NOI18N
+        btnNew.setForeground(new java.awt.Color(255, 255, 255));
+        btnNew.setText("NEW GAME");
 
-        btnLoad.setText("Load Game");
+        btnLoad.setBackground(new java.awt.Color(0, 0, 0));
+        btnLoad.setFont(new java.awt.Font("Determination Mono", 0, 11)); // NOI18N
+        btnLoad.setForeground(new java.awt.Color(255, 255, 255));
+        btnLoad.setText("LOAD GAME");
 
-        btnCredit.setText("Credits");
+        btnCredit.setBackground(new java.awt.Color(0, 0, 0));
+        btnCredit.setFont(new java.awt.Font("Determination Mono", 0, 11)); // NOI18N
+        btnCredit.setForeground(new java.awt.Color(255, 255, 255));
+        btnCredit.setText("CREDITS");
 
-        title.setAlignment(java.awt.Label.CENTER);
-        title.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        title.setFont(new java.awt.Font("Candara", 0, 50)); // NOI18N
-        title.setText("Bon Appetit");
+        javax.swing.GroupLayout bground1Layout = new javax.swing.GroupLayout(bground1);
+        bground1.setLayout(bground1Layout);
+        bground1Layout.setHorizontalGroup(
+            bground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bground1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(btnNew)
+                .addGap(35, 35, 35)
+                .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(btnCredit)
+                .addGap(31, 31, 31))
+        );
+        bground1Layout.setVerticalGroup(
+            bground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bground1Layout.createSequentialGroup()
+                .addContainerGap(241, Short.MAX_VALUE)
+                .addGroup(bground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNew)
+                    .addComponent(btnLoad)
+                    .addComponent(btnCredit))
+                .addGap(38, 38, 38))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnNew)
-                .addGap(54, 54, 54)
-                .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCredit)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(bground1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNew)
-                    .addComponent(btnLoad)
-                    .addComponent(btnCredit))
-                .addGap(34, 34, 34))
+            .addComponent(bground1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -157,9 +147,10 @@ public class MainMenu extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private view.bground bground1;
     private javax.swing.JButton btnCredit;
     private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnNew;
-    private java.awt.Label title;
+    private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }

@@ -50,14 +50,16 @@ public class Game extends Thread {
     }
 
     public void moving(Asset a, char in) {
-        if (in == up) {
-            a.move('u', m.getRow(), m.getColumn(), m.getMap());
-        } else if (in == down) {
-            a.move('d', m.getRow(), m.getColumn(), m.getMap());
-        } else if (in == left) {
-            a.move('l', m.getRow(), m.getColumn(), m.getMap());
-        } else if (in == right) {
-            a.move('r', m.getRow(), m.getColumn(), m.getMap());
+        if (a!=null) {
+            if (in == up) {
+                a.move('u', m.getRow(), m.getColumn(), m.getMap());
+            } else if (in == down) {
+                a.move('d', m.getRow(), m.getColumn(), m.getMap());
+            } else if (in == left) {
+                a.move('l', m.getRow(), m.getColumn(), m.getMap());
+            } else if (in == right) {
+                a.move('r', m.getRow(), m.getColumn(), m.getMap());
+            }
         }
     }
 
