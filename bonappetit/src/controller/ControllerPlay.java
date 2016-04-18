@@ -58,9 +58,7 @@ public class ControllerPlay implements KeyListener, Runnable {
             play.getFieldPlay().append("|");
             for (int j = 0; j < game.getM().getMap()[i].length; j++) {
                 if (game.getM().getMap()[i][j] == game.getAsset()[0]) {
-                    play.getFieldPlay().setForeground(Color.RED);
                     play.getFieldPlay().append(game.getM().getMap()[i][j].toString());
-                    play.getFieldPlay().setForeground(Color.BLACK);
                 } else if (game.getM().getMap()[i][j] == null) {
                     play.getFieldPlay().append(" ");
                 } else {
@@ -89,9 +87,7 @@ public class ControllerPlay implements KeyListener, Runnable {
                 play.getFieldPlay().append("|");
                 for (int j = 0; j < game.getM().getMap()[i].length; j++) {
                     if (game.getM().getMap()[i][j] == game.getAsset()[0]) {
-                        play.getFieldPlay().setForeground(Color.RED);
                         play.getFieldPlay().append(game.getM().getMap()[i][j].toString());
-                        play.getFieldPlay().setForeground(Color.BLACK);
                     } else if (game.getM().getMap()[i][j] == null) {
                         play.getFieldPlay().append(" ");
                     } else {
@@ -106,6 +102,8 @@ public class ControllerPlay implements KeyListener, Runnable {
             }
             play.getFieldPlay().append("+");
             Thread.sleep(1000);
+        } catch (NullPointerException e) {
+            System.out.println("Null error, but its okay");
         } catch (Throwable f) {
             f.printStackTrace();
         }
@@ -154,12 +152,13 @@ public class ControllerPlay implements KeyListener, Runnable {
                         game.setDead(game.getDead() + 1);
                     }
                 }
-                if (game.isWin()) {
+                if (game.isRun()==false) {
                     ControllerMainMenu mm = new ControllerMainMenu();
                     play.dispose();
                 }
                 if (game.getDead() == game.getAsset().length - 1) {
                     game.setWin(true);
+                    game.setRun(false);
                     play.getFieldStatus().setText("Status : You Win !");
                 } else {
                     play.getFieldStatus().setText("Status : Enemy Leftover = " + (game.getAsset().length - game.getDead() - 1));
@@ -186,12 +185,13 @@ public class ControllerPlay implements KeyListener, Runnable {
                         game.setDead(game.getDead() + 1);
                     }
                 }
-                if (game.isWin()) {
+                if (game.isRun()==false) {
                     ControllerMainMenu mm = new ControllerMainMenu();
                     play.dispose();
                 }
                 if (game.getDead() == game.getAsset().length - 1) {
                     game.setWin(true);
+                    game.setRun(false);
                     play.getFieldStatus().setText("Status : You Win !");
                 } else {
                     play.getFieldStatus().setText("Status : Enemy Leftover = " + (game.getAsset().length - game.getDead() - 1));
@@ -218,12 +218,13 @@ public class ControllerPlay implements KeyListener, Runnable {
                         game.setDead(game.getDead() + 1);
                     }
                 }
-                if (game.isWin()) {
+                if (game.isRun()==false) {
                     ControllerMainMenu mm = new ControllerMainMenu();
                     play.dispose();
                 }
                 if (game.getDead() == game.getAsset().length - 1) {
                     game.setWin(true);
+                    game.setRun(false);
                     play.getFieldStatus().setText("Status : You Win !");
                 } else {
                     play.getFieldStatus().setText("Status : Enemy Leftover = " + (game.getAsset().length - game.getDead() - 1));
@@ -250,13 +251,15 @@ public class ControllerPlay implements KeyListener, Runnable {
                         game.setDead(game.getDead() + 1);
                     }
                 }
-                if (game.isWin()) {
+                if (game.isRun()==false) {
                     ControllerMainMenu mm = new ControllerMainMenu();
                     play.dispose();
                 }
                 if (game.getDead() == game.getAsset().length - 1) {
                     game.setWin(true);
+                    game.setRun(false);
                     play.getFieldStatus().setText("Status : You Win !");
+                    System.out.println("Play Status : You Win");
                 } else {
                     play.getFieldStatus().setText("Status : Enemy Leftover = " + (game.getAsset().length - game.getDead() - 1));
                     game.setDead(0);
@@ -279,47 +282,59 @@ public class ControllerPlay implements KeyListener, Runnable {
                 }
             }
             game.getM().nullMap();
-//            for (int b = 1; b < game.getAsset().length; b++) {
-//                if (game.getAsset()[b] != null) {
-//                    System.out.println("null b");
-//                    for (int c = 0; c < game.getAsset().length; c++) {
-//                        if (game.getAsset()[c] != null) {
-//                            System.out.println("null c");
-//                            if (game.getAsset()[c] != game.getAsset()[b]) {
-//                                System.out.println("c =/= b");
-//                                if (game.getAsset()[b].getPosY() == game.getAsset()[c].getPosY() && game.getAsset()[b].getPosX() == game.getAsset()[c].getPosX()) {
-//                                    System.out.println(" pos c = pos b");
-//                                    if (game.getAsset()[b].getLevel() >= game.getAsset()[c].getLevel()) {
-//                                        game.removeAsset(c);
-//                                    } else {
-//                                        game.removeAsset(b);
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
+            for (int b = 1; b < game.getAsset().length; b++) {
+                if (game.getAsset()[b] != null) {
+                    for (int c = 0; c < game.getAsset().length; c++) {
+                        if (game.getAsset()[c] != null && game.getAsset()[b] != null) {
+                            if (game.getAsset()[c] != game.getAsset()[b]) {
+                                if (game.getAsset()[b].getPosY() == game.getAsset()[c].getPosY() && game.getAsset()[b].getPosX() == game.getAsset()[c].getPosX()) {
+                                    if (game.getAsset()[b].getLevel() >= game.getAsset()[c].getLevel()) {
+                                        game.removeAsset(c);
+                                    } else {
+                                        game.removeAsset(b);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             for (int o = 0; o < game.getAsset().length; o++) {
                 if (game.getAsset()[o] != null) {
                     game.getM().addAsset(game.getAsset()[o]);
                 }
             }
-            this.display2();
+            if (game.isRun()==false) {
+                play.getFieldPlay().setText("");
+            } else {
+                this.display2();
+            }
             if (game.getAsset()[0] == null) {
                 game.setRun(false);
+                play.getFieldStatus().setText("Status : You Lose !");
+                JOptionPane.showMessageDialog(null, "You Lose, but its ok");
+                System.out.println("You Lose, but its ok");
+                ControllerMainMenu mm = new ControllerMainMenu();
+                play.dispose();
             }
             for (int i = 1; i < game.getAsset().length; i++) {
                 if (game.getAsset()[i] == null) {
                     game.setDead(game.getDead() + 1);
                 }
             }
+            
             if (game.getDead() == game.getAsset().length - 1) {
                 game.setRun(false);
                 game.setWin(true);
             } else {
+                play.getFieldStatus().setText("Status : Enemy Leftover = " + (game.getAsset().length - game.getDead() - 1));
                 game.setDead(0);
             }
+            System.out.print("Play Status : ");
+            for (int i=0; i<game.getAsset().length; i++) {
+                System.out.print(game.getAsset()[i]+" ");
+            }
+            System.out.println();
         }
 
     }
