@@ -5,6 +5,9 @@
  */
 package bonappetit;
 
+import controller.ControllerMainMenu;
+import java.io.IOException;
+import model.CmdApplication;
 
 /**
  *
@@ -15,11 +18,11 @@ public class Bonappetit {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        Game game = new Game();
-        
-        game.play();
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+//        CmdApplication app = new CmdApplication();
+//        app.menu();
+
+        ControllerMainMenu cm = new ControllerMainMenu();
         // we serve you the best, happy bon appetit
     }
     
