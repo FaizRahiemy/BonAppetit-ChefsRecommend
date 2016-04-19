@@ -7,6 +7,8 @@ package model;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,6 +21,7 @@ public class Game extends Thread {
     Scanner a = new Scanner(System.in);
     boolean run = true;
     boolean win = false;
+    boolean show = false;
 
     char up = 'w';
     char down = 's';
@@ -166,6 +169,16 @@ public class Game extends Thread {
     public void setQuit(char quit) {
         this.quit = quit;
     }
+
+    public boolean isShow() {
+        return show;
+    }
+
+    public void setShow(boolean show) {
+        this.show = show;
+    }
+    
+    
     
     @Override
     public void run() {
@@ -176,33 +189,38 @@ public class Game extends Thread {
                 }
             }
             m.nullMap();
-//            for (int q = 0; q < asset.length; q++) {
-//                System.out.print(asset[q]+" ");
-//            }
-//            for (int b = 1; b < asset.length; b++) {
-//                if (asset[b]!=null) {
-//                    for(int c = 0; c<asset.length; c++) {
-//                        if (asset[c] != null) {
-//                            if (asset[c]!=asset[b]) {
-//                                if (asset[b].getPosY()==asset[c].getPosY() && asset[b].getPosX()==asset[c].getPosX()) {
-//                                    if (asset[b].getLevel()>asset[c].getLevel()) {
-//                                        asset[c]=null;
-//                                    }
-//                                    else {
-//                                        asset[b]=null;
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
+            for (int b = 1; b < asset.length; b++) {
+                if (asset[b]!=null) {
+                    for(int c = 0; c<asset.length; c++) {
+                        if (asset[c] != null && asset[b] != null) {
+                            if (asset[c]!=asset[b]) {
+                                if (asset[b].getPosY()==asset[c].getPosY() && asset[b].getPosX()==asset[c].getPosX()) {
+                                    if (asset[b].getLevel()>asset[c].getLevel()) {
+                                        asset[c]=null;
+                                    }
+                                    else {
+                                        asset[b]=null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             for (int o = 0; o < asset.length; o++) {
                if (asset[o] != null) {
                     m.addAsset(asset[o]);
                 }
             }
-            m.display();
+            if (show) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                m.display();
+            }
             if (asset[0] == null) {
                 run = false;
             }

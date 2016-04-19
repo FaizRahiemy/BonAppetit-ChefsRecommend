@@ -120,18 +120,23 @@ public class ControllerPlay implements KeyListener, Runnable {
         if (a.equals(play.getFieldPlay())) {
             if (e.getKeyCode() == e.VK_E) {
                 game.getAsset()[0].skill();
+                game.setShow(true);
                 display();
+                game.setShow(false);
                 play.getFieldStatus().setText("Status : Skill Activated");
             } else if (e.getKeyCode() == e.VK_Q) {
                 try {
                     file.saveFile(game.getAsset());
+                    game.setShow(true);
                     display();
+                    game.setShow(false);
                     play.getFieldStatus().setText("Status : File Saved");
                 } catch (IOException ex) {
                     System.out.println("Save error");
                     JOptionPane.showMessageDialog(null, "Save Error");
                 }
             } else if (e.getKeyCode() == e.VK_W) {
+                if (game.getAsset()[0]!=null) {
                 game.moving(game.getAsset()[0], 'w');
                 game.getM().nullMap();
                 for (int o = 0; o < game.getAsset().length; o++) {
@@ -146,7 +151,9 @@ public class ControllerPlay implements KeyListener, Runnable {
                         }
                     }
                 }
+                game.setShow(true);
                 display();
+                game.setShow(false);
                 for (int i = 1; i < game.getAsset().length; i++) {
                     if (game.getAsset()[i] == null) {
                         game.setDead(game.getDead() + 1);
@@ -164,7 +171,9 @@ public class ControllerPlay implements KeyListener, Runnable {
                     play.getFieldStatus().setText("Status : Enemy Leftover = " + (game.getAsset().length - game.getDead() - 1));
                     game.setDead(0);
                 }
+                }
             } else if (e.getKeyCode() == e.VK_S) {
+                if (game.getAsset()[0]!=null) {
                 game.moving(game.getAsset()[0], 's');
                 game.getM().nullMap();
                 for (int o = 0; o < game.getAsset().length; o++) {
@@ -179,7 +188,9 @@ public class ControllerPlay implements KeyListener, Runnable {
                         }
                     }
                 }
+                game.setShow(true);
                 display();
+                game.setShow(false);
                 for (int i = 1; i < game.getAsset().length; i++) {
                     if (game.getAsset()[i] == null) {
                         game.setDead(game.getDead() + 1);
@@ -197,7 +208,9 @@ public class ControllerPlay implements KeyListener, Runnable {
                     play.getFieldStatus().setText("Status : Enemy Leftover = " + (game.getAsset().length - game.getDead() - 1));
                     game.setDead(0);
                 }
+                }
             } else if (e.getKeyCode() == e.VK_A) {
+                if (game.getAsset()[0]!=null) {
                 game.moving(game.getAsset()[0], 'a');
                 game.getM().nullMap();
                 for (int o = 0; o < game.getAsset().length; o++) {
@@ -212,7 +225,9 @@ public class ControllerPlay implements KeyListener, Runnable {
                         }
                     }
                 }
+                game.setShow(true);
                 display();
+                game.setShow(false);
                 for (int i = 1; i < game.getAsset().length; i++) {
                     if (game.getAsset()[i] == null) {
                         game.setDead(game.getDead() + 1);
@@ -230,7 +245,9 @@ public class ControllerPlay implements KeyListener, Runnable {
                     play.getFieldStatus().setText("Status : Enemy Leftover = " + (game.getAsset().length - game.getDead() - 1));
                     game.setDead(0);
                 }
+                }
             } else if (e.getKeyCode() == e.VK_D) {
+                if (game.getAsset()[0]!=null) {
                 game.moving(game.getAsset()[0], 'd');
                 game.getM().nullMap();
                 for (int o = 0; o < game.getAsset().length; o++) {
@@ -245,7 +262,9 @@ public class ControllerPlay implements KeyListener, Runnable {
                         }
                     }
                 }
+                game.setShow(true);
                 display();
+                game.setShow(false);
                 for (int i = 1; i < game.getAsset().length; i++) {
                     if (game.getAsset()[i] == null) {
                         game.setDead(game.getDead() + 1);
@@ -264,6 +283,10 @@ public class ControllerPlay implements KeyListener, Runnable {
                     play.getFieldStatus().setText("Status : Enemy Leftover = " + (game.getAsset().length - game.getDead() - 1));
                     game.setDead(0);
                 }
+                }
+            } else if (e.getKeyCode() == e.VK_0) {
+                ControllerMainMenu mm = new ControllerMainMenu();
+                play.dispose();
             }
         }
     }
@@ -304,8 +327,12 @@ public class ControllerPlay implements KeyListener, Runnable {
                     game.getM().addAsset(game.getAsset()[o]);
                 }
             }
-            if (game.isRun()==false) {
-                play.getFieldPlay().setText("");
+            if (game.isShow()) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(ControllerPlay.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 this.display2();
             }
