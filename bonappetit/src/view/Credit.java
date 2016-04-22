@@ -58,7 +58,7 @@ public class Credit extends javax.swing.JFrame {
         textCredit.setColumns(20);
         textCredit.setForeground(new java.awt.Color(255, 255, 255));
         textCredit.setRows(5);
-        textCredit.setBorder(null);
+        textCredit.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jScrollPane1.setViewportView(textCredit);
 
         javax.swing.GroupLayout bground21Layout = new javax.swing.GroupLayout(bground21);
@@ -66,13 +66,13 @@ public class Credit extends javax.swing.JFrame {
         bground21Layout.setHorizontalGroup(
             bground21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bground21Layout.createSequentialGroup()
-                .addGap(161, 161, 161)
-                .addComponent(btnMenu)
-                .addContainerGap(186, Short.MAX_VALUE))
-            .addGroup(bground21Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bground21Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnMenu)
+                .addGap(172, 172, 172))
         );
         bground21Layout.setVerticalGroup(
             bground21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

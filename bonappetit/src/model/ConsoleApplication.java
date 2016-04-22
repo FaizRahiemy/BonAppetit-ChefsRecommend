@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author Novak
  */
-public class CmdApplication {
+public class ConsoleApplication {
 
     Game game = new Game();
     IOFile file = new IOFile();
@@ -151,9 +151,12 @@ public class CmdApplication {
         thread.start();
         while (dir != game.getQuit() && game.getAsset()[0] != null) {
             dir = n.next().charAt(0);
-            if (dir == game.getSkill()) {
-                game.getAsset()[0].skill();
-            } else if (dir == game.getSave()) {
+            if (game.getAsset()[0] == null) {
+                game.setRun(false);
+            } else {
+                if (dir == game.getSkill()) {
+                    game.getAsset()[0].skill();
+                } else if (dir == game.getSave()) {
 //                try (FileOutputStream fout = new FileOutputStream("save.txt")) {
 //                    ObjectOutputStream oout = new ObjectOutputStream(fout);
 //                    oout.writeObject(game.getAsset());
@@ -162,26 +165,29 @@ public class CmdApplication {
 //                } catch (IOException ex) {
 //                    System.out.println("Eror File");
 //                }
-                file.saveFile(game.getAsset());
-            } else {
-                game.moving(game.getAsset()[0], dir);
-            }
-            game.getM().nullMap();
-            for (int o = 0; o < game.getAsset().length; o++) {
-                game.getM().addAsset(game.getAsset()[o]);
-            }
-            game.getM().display2();
-            for (int p = 1; p < game.getAsset().length; p++) {
-                if (game.getAsset()[p] != null) {
-                    if (game.getAsset()[p].getPosY() == game.getAsset()[0].getPosY() && game.getAsset()[p].getPosX() == game.getAsset()[0].getPosX()) {
-                        if (game.getAsset()[p].getLevel() <= game.getAsset()[0].getLevel()) {
-                            game.removeAsset(p);
+                    file.saveFile(game.getAsset());
+                } else {
+                    game.moving(game.getAsset()[0], dir);
+                }
+                game.getM().nullMap();
+                for (int o = 0; o < game.getAsset().length; o++) {
+                    game.getM().addAsset(game.getAsset()[o]);
+                }
+                game.setShow(true);
+                game.getM().display2();
+                game.setShow(false);
+                for (int p = 1; p < game.getAsset().length; p++) {
+                    if (game.getAsset()[p] != null) {
+                        if (game.getAsset()[p].getPosY() == game.getAsset()[0].getPosY() && game.getAsset()[p].getPosX() == game.getAsset()[0].getPosX()) {
+                            if (game.getAsset()[p].getLevel() <= game.getAsset()[0].getLevel()) {
+                                game.removeAsset(p);
+                            }
                         }
                     }
                 }
-            }
-            if (game.getDead()==game.getAsset().length-1) {
-                dir = '0';
+                if (game.getDead() == game.getAsset().length - 1) {
+                    dir = '0';
+                }
             }
         }
         game.setRun(false);
@@ -331,10 +337,10 @@ public class CmdApplication {
                 System.out.println("Wrong input");
                 a = new Scanner(System.in);
                 pil = -1;
-            }// catch (Exception es) {
-//                System.out.println("Error");
-//                pil = 4;
-//            }
+            } catch (Exception es) {
+                System.out.println("Error");
+                pil = 4;
+            }
         } while (pil != 0);
     }
 }
